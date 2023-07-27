@@ -15,8 +15,8 @@ import (
 )
 
 const (
-	CodeTypeOK            		uint32 = 0
-	CodeTypeError 				uint32 = 1
+	CodeTypeOK            			uint32 = 0
+	CodeTypeError 					uint32 = 1
 )
 
 var (
@@ -25,28 +25,28 @@ var (
 
 type PData struct{
 	Proof 	verifier.ProofString	`json:"proof"`
-	Public 	[]string 	`json:"public"`
+	Public 	[]string 				`json:"public"`
 }
 
 type AData struct{
-	Vkey	  verifier.VkString	`json:"vkey"`
-	Cand 	  Candidate `json:"cand"`
-	RegStart  int64		`json:"regstart"`
-	RegEnd	  int64		`json:"regend"`
-	VoteStart int64		`json:"votestart"`
-	VoteEnd	  int64		`json:"voteend"`
+	Vkey	  verifier.VkString		`json:"vkey"`
+	Cand 	  Candidate 			`json:"cand"`
+	RegStart  int64					`json:"regstart"`
+	RegEnd	  int64					`json:"regend"`
+	VoteStart int64					`json:"votestart"`
+	VoteEnd	  int64					`json:"voteend"`
 }
 
 type Trans struct{
-	Type	string 		`json:"type"`
-	Vdata	Verify		`json:"vdata"`
-	Pdata	PData		`json:"pdata"`
-	Adata   AData 		`json:"adata"`
+	Type	string 					`json:"type"`
+	Vdata	Verify					`json:"vdata"`
+	Pdata	PData					`json:"pdata"`
+	Adata   AData 					`json:"adata"`
 }
 
 type Candidate struct{
-	Name 	[]string	`json:"name"`
-	Vote 	[]int64		`json:"vote"`
+	Name 	[]string				`json:"name"`
+	Vote 	[]int64					`json:"vote"`
 }
 
 //------------------------------------------------------------
@@ -55,14 +55,14 @@ var _ abcitypes.Application = (*DApplication)(nil)
 
 type DApplication struct {
 	abcitypes.BaseApplication
-	zktree 			*verifier.ZkTree 			// voter merkle tree
+	zktree 			*verifier.ZkTree 	// voter merkle tree
 	candidate 		map[string]int64 	// candidate list
 	isVoted 		map[string]int 		// check voter
 	isUsed 			map[string]int 		// check Dg15.pubkey
 	leafNode 		[]string 			// zktree leaves
 	voterid 		int 				// number of voter
 	voteid			int					// vote index
-	verifyKey 		*verifier.Vk 				// verification key
+	verifyKey 		*verifier.Vk 		// verification key
 	vkeyHash 		[32]byte 			// hash of verification key
 	height 			int64				// current height of chain
 	zkroot		 	[]byte				// current root of zktree
@@ -141,7 +141,7 @@ func (app *DApplication) isValid(tx []byte) (code uint32) {
 			return 1
 		}
 	} else if trans.Type == "admin"{
-		
+		//check transaction
 	} else {
 		return 1
 	}
