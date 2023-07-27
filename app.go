@@ -11,7 +11,7 @@ import (
 	"time"
 	"crypto/sha256"
 	"bytes"
-	"zkvoting1/verifier"
+	"zkvoting/verifier"
 )
 
 const (

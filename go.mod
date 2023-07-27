@@ -1,4 +1,4 @@
-module zkvoting1
+module zkvoting
 
 go 1.20
 
